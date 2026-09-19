@@ -2,24 +2,26 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Para Isa ❤️</title>
   <style>
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
     }
 
     body {
-      background: linear-gradient(135deg, #fffde7 0%, #fff9c4 100%);
-      font-family: 'Quicksand', 'Segoe UI', sans-serif;
+      background: linear-gradient(180deg, #fffde7 0%, #fff59d 100%);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: flex-start;
-      padding: 20px;
+      padding: 15px;
       overflow-x: hidden;
       position: relative;
     }
@@ -28,160 +30,63 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
       width: 100%;
-      max-width: 380px;
+      max-width: 400px;
       z-index: 10;
     }
 
-    /* CONTENEDOR Y ANIMACIÓN DE LA FLOR */
-    .flower-wrapper {
-      position: relative;
-      width: 260px;
-      height: 270px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      animation: gentleSway 4s ease-in-out infinite alternate;
-      transform-origin: bottom center;
+    /* FLOR EN SVG GRANDE Y BONITA */
+    .flower-box {
+      width: 100%;
+      max-width: 280px;
+      height: 280px;
+      margin-bottom: 5px;
+      animation: floatSway 4s ease-in-out infinite alternate;
     }
 
-    @keyframes gentleSway {
-      0% { transform: rotate(-2deg); }
-      100% { transform: rotate(2deg); }
+    @keyframes floatSway {
+      0% { transform: translateY(0) rotate(-1.5deg); }
+      100% { transform: translateY(-6px) rotate(1.5deg); }
     }
 
-    /* TALLO Y HOJAS */
-    .stem {
-      position: absolute;
-      bottom: 0;
-      width: 10px;
-      height: 140px;
-      background: linear-gradient(to right, #2e7d32, #4caf50);
-      border-radius: 10px;
-      z-index: 1;
-    }
-
-    .leaf {
-      position: absolute;
-      background: linear-gradient(to right, #388e3c, #66bb6a);
-      border-radius: 0px 50px 0px 50px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-      z-index: 1;
-    }
-
-    .leaf-left {
-      bottom: 45px;
-      left: 70px;
-      width: 48px;
-      height: 26px;
-      transform: rotate(-30deg);
-      animation: leafFloatLeft 3s ease-in-out infinite alternate;
-    }
-
-    .leaf-right {
-      bottom: 30px;
-      right: 70px;
-      width: 48px;
-      height: 26px;
-      border-radius: 50px 0px 50px 0px;
-      transform: rotate(30deg);
-      animation: leafFloatRight 3s ease-in-out infinite alternate;
-    }
-
-    @keyframes leafFloatLeft {
-      0% { transform: rotate(-30deg) scale(1); }
-      100% { transform: rotate(-35deg) scale(1.05); }
-    }
-
-    @keyframes leafFloatRight {
-      0% { transform: rotate(30deg) scale(1); }
-      100% { transform: rotate(35deg) scale(1.05); }
-    }
-
-    /* CENTRO DE LA FLOR */
-    .flower-head {
-      position: absolute;
-      top: 10px;
-      width: 200px;
-      height: 200px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 2;
-    }
-
-    .center-circle {
-      position: absolute;
-      width: 75px;
-      height: 75px;
-      background: radial-gradient(circle, #5d4037 0%, #3e2723 100%);
-      border: 3px solid #fbc02d;
-      border-radius: 50%;
-      z-index: 10;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      box-shadow: 0 6px 15px rgba(62, 39, 35, 0.3);
+    .petal-svg {
+      fill: #ffeb3b;
+      stroke: #f57f17;
+      stroke-width: 1.5;
       cursor: pointer;
-      color: #ffd54f;
-      font-size: 28px;
-      user-select: none;
-      transition: transform 0.2s;
+      transition: fill 0.15s, transform 0.15s;
     }
 
-    .center-circle:active {
-      transform: scale(1.1);
+    .petal-svg:active {
+      fill: #fff59d;
     }
 
-    /* PÉTALOS */
-    .petal {
-      position: absolute;
-      width: 36px;
-      height: 85px;
-      background: linear-gradient(180deg, #ffee58 0%, #fbc02d 100%);
-      border: 1px solid #f57f17;
-      border-radius: 50% 50% 45% 45% / 70% 70% 30% 30%;
+    .center-svg {
+      fill: #5d4037;
+      stroke: #3e2723;
+      stroke-width: 2;
       cursor: pointer;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.08);
-      transform-origin: center bottom;
-      top: 15px;
-      z-index: 5;
-      transition: transform 0.2s, filter 0.2s;
     }
 
-    .petal:active {
-      filter: brightness(1.15);
-      transform: scale(1.1) !important;
+    .heart-svg {
+      fill: #ffb300;
+      cursor: pointer;
     }
-
-    .p1  { transform: rotate(0deg) translateY(-42px); }
-    .p2  { transform: rotate(30deg) translateY(-42px); }
-    .p3  { transform: rotate(60deg) translateY(-42px); }
-    .p4  { transform: rotate(90deg) translateY(-42px); }
-    .p5  { transform: rotate(120deg) translateY(-42px); }
-    .p6  { transform: rotate(150deg) translateY(-42px); }
-    .p7  { transform: rotate(180deg) translateY(-42px); }
-    .p8  { transform: rotate(210deg) translateY(-42px); }
-    .p9  { transform: rotate(240deg) translateY(-42px); }
-    .p10 { transform: rotate(270deg) translateY(-42px); }
-    .p11 { transform: rotate(300deg) translateY(-42px); }
-    .p12 { transform: rotate(330deg) translateY(-42px); }
 
     /* TEXTOS */
     .title {
-      font-size: 20px;
+      font-size: 22px;
       color: #4e342e;
-      font-weight: 700;
+      font-weight: 800;
       text-align: center;
-      margin-top: 5px;
+      margin-top: 2px;
     }
 
     .subtitle {
-      font-size: 13px;
+      font-size: 14px;
       color: #8d6e63;
       text-align: center;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
     }
 
     /* CAJA DE MENSAJE */
@@ -192,33 +97,34 @@
       padding: 14px;
       width: 100%;
       text-align: center;
-      min-height: 75px;
+      min-height: 70px;
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 6px 15px rgba(0,0,0,0.05);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
       color: #3e2723;
-      font-size: 14px;
-      font-weight: 600;
+      font-size: 15px;
+      font-weight: 700;
       margin-bottom: 15px;
     }
 
     /* BOTÓN YOUTUBE */
     .youtube-link {
       background: linear-gradient(135deg, #f57c00 0%, #e65100 100%);
-      color: white;
+      color: #ffffff;
       text-decoration: none;
-      padding: 10px 22px;
+      padding: 12px 24px;
       border-radius: 30px;
-      font-size: 13px;
+      font-size: 14px;
       font-weight: bold;
-      box-shadow: 0 4px 12px rgba(230, 81, 0, 0.3);
+      box-shadow: 0 4px 10px rgba(230, 81, 0, 0.3);
       display: inline-block;
       text-align: center;
-      margin-bottom: 20px;
+      margin-bottom: 18px;
+      width: 100%;
     }
 
-    /* SECCIÓN MINIJUEGO */
+    /* SECCIÓN DEL JUEGO */
     .game-section {
       background: #ffffff;
       border: 2px dashed #fbc02d;
@@ -230,45 +136,45 @@
     }
 
     .game-title {
-      font-size: 14px;
+      font-size: 15px;
       font-weight: bold;
-      color: #5d4037;
-      margin-bottom: 8px;
+      color: #4e342e;
+      margin-bottom: 10px;
     }
 
     .game-btn {
       background-color: #ffb300;
       color: #3e2723;
       border: none;
-      padding: 8px 18px;
+      padding: 10px 20px;
       border-radius: 20px;
       font-weight: bold;
-      font-size: 13px;
+      font-size: 14px;
       cursor: pointer;
       box-shadow: 0 2px 6px rgba(0,0,0,0.1);
       margin-bottom: 8px;
     }
 
     .score-board {
-      font-size: 13px;
-      color: #8d6e63;
-      font-weight: 600;
+      font-size: 14px;
+      color: #6d4c41;
+      font-weight: bold;
     }
 
-    /* CORAZONES CAYENDO (ANIMACIÓN DEL JUEGO) */
+    /* CORAZONES QUE CAEN EN EL MINIJUEGO */
     .falling-heart {
       position: fixed;
-      top: -40px;
-      font-size: 28px;
+      top: -50px;
+      font-size: 36px;
       cursor: pointer;
-      user-select: none;
-      z-index: 999;
-      animation: fall 3.5s linear forwards;
+      z-index: 9999;
+      animation: fall 3s linear forwards;
+      touch-action: manipulation;
     }
 
     @keyframes fall {
       to {
-        transform: translateY(105vh) rotate(360deg);
+        transform: translateY(110vh) rotate(360deg);
       }
     }
   </style>
@@ -277,27 +183,23 @@
 
   <div class="container">
     
-    <div class="flower-wrapper">
-      <div class="stem"></div>
-      <div class="leaf leaf-left"></div>
-      <div class="leaf leaf-right"></div>
-      
-      <div class="flower-head">
-        <div class="petal p1" onclick="showMessage(0)"></div>
-        <div class="petal p2" onclick="showMessage(1)"></div>
-        <div class="petal p3" onclick="showMessage(2)"></div>
-        <div class="petal p4" onclick="showMessage(3)"></div>
-        <div class="petal p5" onclick="showMessage(4)"></div>
-        <div class="petal p6" onclick="showMessage(5)"></div>
-        <div class="petal p7" onclick="showMessage(6)"></div>
-        <div class="petal p8" onclick="showMessage(7)"></div>
-        <div class="petal p9" onclick="showMessage(0)"></div>
-        <div class="petal p10" onclick="showMessage(1)"></div>
-        <div class="petal p11" onclick="showMessage(3)"></div>
-        <div class="petal p12" onclick="showMessage(4)"></div>
-        
-        <div class="center-circle" onclick="showMessage('center')">💛</div>
-      </div>
+    <!-- FLOR EN SVG SIMÉTRICA -->
+    <div class="flower-box">
+      <svg viewBox="0 0 200 220" width="100%" height="100%">
+        <!-- Tallo y Hojas -->
+        <path d="M100 100 Q102 160 100 210" stroke="#2e7d32" stroke-width="8" fill="none" stroke-linecap="round"/>
+        <path d="M100 170 Q70 160 55 180 Q80 190 100 170" fill="#2e7d32"/>
+        <path d="M100 150 Q130 140 145 160 Q120 170 100 150" fill="#2e7d32"/>
+
+        <!-- 12 Pétalos colocados ordenadamente en círculo -->
+        <g id="petals-group">
+          <!-- Se generan dinámicamente con JS -->
+        </g>
+
+        <!-- Centro de la flor con Corazón -->
+        <circle class="center-svg" cx="100" cy="100" r="32" onclick="showMessage('center')" />
+        <path class="heart-svg" d="M100 106 L92 98 A6 6 0 0 1 100 89 A6 6 0 0 1 108 98 Z" onclick="showMessage('center')" />
+      </svg>
     </div>
 
     <div class="title">para isa :b</div>
@@ -311,7 +213,7 @@
       ▶ Ver canción: Alex G - Mary
     </a>
 
-    <!-- MINIJUEGO -->
+    <!-- SECCIÓN MINIJUEGO -->
     <div class="game-section">
       <div class="game-title">🎮 Minijuego: Atrapa los corazones para Isa</div>
       <button class="game-btn" onclick="toggleGame()" id="game-btn">▶ Iniciar minijuego</button>
@@ -332,6 +234,20 @@
       "gracias por existir y estar junto a mi >•<"
     ];
 
+    /* GENERACIÓN DE PÉTALOS PERFECTOS */
+    const petalsGroup = document.getElementById('petals-group');
+    const totalPetals = 12;
+
+    for (let i = 0; i < totalPetals; i++) {
+      const angle = (360 / totalPetals) * i;
+      const petal = document.createElementNS("http://www.w3.org/2000/svg", "path");
+      petal.setAttribute("class", "petal-svg");
+      petal.setAttribute("d", "M100 100 C88 50 88 20 100 20 C112 20 112 50 100 100");
+      petal.setAttribute("transform", `rotate(${angle}, 100, 100)`);
+      petal.onclick = () => showMessage(i % messages.length);
+      petalsGroup.appendChild(petal);
+    }
+
     function showMessage(index) {
       const box = document.getElementById('msg-box');
       if (index === 'center') {
@@ -341,7 +257,7 @@
       }
     }
 
-    /* LÓGICA DEL MINIJUEGO */
+    /* MINIJUEGO OPTIMIZADO PARA PANTALLAS TÁCTILES */
     let gameInterval = null;
     let score = 0;
     let isPlaying = false;
@@ -351,7 +267,7 @@
       if (!isPlaying) {
         isPlaying = true;
         btn.textContent = "⏸ Pausar juego";
-        gameInterval = setInterval(spawnHeart, 700);
+        gameInterval = setInterval(spawnHeart, 600);
       } else {
         isPlaying = false;
         btn.textContent = "▶ Reanudar juego";
@@ -366,9 +282,31 @@
       const emojis = ['💖', '💛', '✨', '💕', '🌸'];
       heart.textContent = emojis[Math.floor(Math.random() * emojis.length)];
       
-      heart.style.left = Math.random() * (window.innerWidth - 40) + 'px';
+      heart.style.left = Math.random() * (window.innerWidth - 60) + 10 + 'px';
       
-      heart.onclick = function() {
+      const catchHeart = (e) => {
+        e.preventDefault();
+        score++;
+        document.getElementById('score-board').textContent = `Corazones atrapados: ${score} ❤️`;
+        heart.remove();
+      };
+
+      heart.addEventListener('touchstart', catchHeart, { passive: false });
+      heart.addEventListener('click', catchHeart);
+
+      document.body.appendChild(heart);
+
+      setTimeout(() => {
+        if (heart.parentNode) {
+          heart.remove();
+        }
+      }, 3000);
+    }
+  </script>
+
+</body>
+</html>
+
         score++;
         document.getElementById('score-board').textContent = `Corazones atrapados: ${score} ❤️`;
         heart.remove();
