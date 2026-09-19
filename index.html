@@ -31,43 +31,118 @@
       max-width: 380px;
     }
 
-    /* ESTILOS DE LA FLOR EN SVG */
-    .flower-svg {
-      width: 260px;
-      height: 320px;
+    /* CONTENEDOR DE LA FLOR */
+    .flower-container {
+      position: relative;
+      width: 220px;
+      height: 270px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 10px;
     }
 
-    .petal {
-      fill: #ffeb3b;
-      stroke: #f57f17;
-      stroke-width: 2;
+    /* TALLO Y HOJAS */
+    .stem {
+      position: absolute;
+      bottom: 0;
+      width: 8px;
+      height: 140px;
+      background-color: #2e7d32;
+      border-radius: 4px;
+      z-index: 1;
+    }
+
+    .leaf-left {
+      position: absolute;
+      bottom: 45px;
+      left: 60px;
+      width: 45px;
+      height: 22px;
+      background-color: #2e7d32;
+      border-radius: 20px 0px 20px 0px;
+      transform: rotate(-20deg);
+      z-index: 1;
+    }
+
+    .leaf-right {
+      position: absolute;
+      bottom: 35px;
+      right: 60px;
+      width: 45px;
+      height: 22px;
+      background-color: #2e7d32;
+      border-radius: 0px 20px 0px 20px;
+      transform: rotate(20deg);
+      z-index: 1;
+    }
+
+    /* CABEZA DE LA FLOR (PÉTALOS Y CENTRO) */
+    .flower-head {
+      position: absolute;
+      top: 10px;
+      width: 180px;
+      height: 180px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 2;
+    }
+
+    /* CENTRO REDONDO */
+    .center-circle {
+      position: absolute;
+      width: 75px;
+      height: 75px;
+      background: radial-gradient(circle, #6d4c41 0%, #4e342e 100%);
+      border-radius: 50%;
+      z-index: 10;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
       cursor: pointer;
-      transition: fill 0.2s;
+      color: #ffb300;
+      font-size: 24px;
+    }
+
+    /* PÉTALOS SIMÉTRICOS Y ORDENADOS */
+    .petal {
+      position: absolute;
+      width: 38px;
+      height: 80px;
+      background: linear-gradient(to top, #fbc02d, #ffeb3b);
+      border: 1.5px solid #f57f17;
+      border-radius: 50% 50% 50% 50% / 70% 70% 30% 30%;
+      cursor: pointer;
+      transition: filter 0.2s, transform 0.2s;
+      /* Rotación exacta desde el centro */
+      transform-origin: center 80px;
+      top: 10px;
+      z-index: 5;
     }
 
     .petal:hover, .petal:active {
-      fill: #fff176;
+      filter: brightness(1.1);
     }
 
-    .center-circle {
-      fill: #8d6e63;
-      stroke: #5d4037;
-      stroke-width: 3;
-      cursor: pointer;
-    }
+    /* Ángulos idénticos alrededor del centro */
+    .p1 { transform: rotate(0deg); }
+    .p2 { transform: rotate(45deg); }
+    .p3 { transform: rotate(90deg); }
+    .p4 { transform: rotate(135deg); }
+    .p5 { transform: rotate(180deg); }
+    .p6 { transform: rotate(225deg); }
+    .p7 { transform: rotate(270deg); }
+    .p8 { transform: rotate(315deg); }
 
-    .center-heart {
-      fill: #ffb300;
-      cursor: pointer;
-    }
-
-    /* TEXTOS */
+    /* TEXTOS Y MENSAJES */
     .title {
       font-size: 18px;
       color: #5d4037;
       font-weight: bold;
       text-align: center;
-      margin-top: 10px;
+      margin-top: 5px;
     }
 
     .subtitle {
@@ -95,7 +170,7 @@
       margin-bottom: 20px;
     }
 
-    /* BOTÓN DE YOUTUBE */
+    /* BOTÓN YOUTUBE */
     .youtube-link {
       background-color: #e65100;
       color: white;
@@ -119,36 +194,23 @@
 
   <div class="container">
     
-    <svg class="flower-svg" viewBox="0 0 200 250">
-      <!-- TALLO Y HOJAS -->
-      <path d="M100 120 Q102 180 100 240" stroke="#2e7d32" stroke-width="8" fill="none" stroke-linecap="round"/>
-      <path d="M100 190 Q70 180 60 200 Q80 210 100 190" fill="#2e7d32"/>
-      <path d="M100 170 Q130 160 140 180 Q120 190 100 170" fill="#2e7d32"/>
-
-      <!-- 8 PÉTALOS PERFECTAMENTE DISTRIBUIDOS -->
-      <g>
-        <!-- Pétalo Arriba -->
-        <path class="petal" d="M100 120 C85 70 85 30 100 30 C115 30 115 70 100 120" onclick="showMessage(0)"/>
-        <!-- Pétalo Arriba-Derecha -->
-        <path class="petal" d="M100 120 C125 75 153 90 163 105 C150 125 120 125 100 120" onclick="showMessage(1)"/>
-        <!-- Pétalo Derecha -->
-        <path class="petal" d="M100 120 C150 105 190 105 190 120 C190 135 150 135 100 120" onclick="showMessage(2)"/>
-        <!-- Pétalo Abajo-Derecha -->
-        <path class="petal" d="M100 120 C135 140 155 170 140 180 C120 170 110 145 100 120" onclick="showMessage(3)"/>
-        <!-- Pétalo Abajo -->
-        <path class="petal" d="M100 120 C115 170 115 200 100 200 C85 200 85 170 100 120" onclick="showMessage(4)"/>
-        <!-- Pétalo Abajo-Izquierda -->
-        <path class="petal" d="M100 120 C65 140 45 170 60 180 C80 170 90 145 100 120" onclick="showMessage(5)"/>
-        <!-- Pétalo Izquierda -->
-        <path class="petal" d="M100 120 C50 105 10 105 10 120 C10 135 50 135 100 120" onclick="showMessage(6)"/>
-        <!-- Pétalo Arriba-Izquierda -->
-        <path class="petal" d="M100 120 C75 75 47 90 37 105 C50 125 80 125 100 120" onclick="showMessage(7)"/>
-      </g>
-
-      <!-- CENTRO DE LA FLOR CON CORAZÓN -->
-      <circle class="center-circle" cx="100" cy="120" r="28" onclick="showMessage('center')"/>
-      <path class="center-heart" d="M100 125 L93 118 A5 5 0 0 1 100 111 A5 5 0 0 1 107 118 Z" onclick="showMessage('center')"/>
-    </svg>
+    <div class="flower-container">
+      <div class="stem"></div>
+      <div class="leaf-left"></div>
+      <div class="leaf-right"></div>
+      
+      <div class="flower-head">
+        <div class="petal p1" onclick="showMessage(0)"></div>
+        <div class="petal p2" onclick="showMessage(1)"></div>
+        <div class="petal p3" onclick="showMessage(2)"></div>
+        <div class="petal p4" onclick="showMessage(3)"></div>
+        <div class="petal p5" onclick="showMessage(4)"></div>
+        <div class="petal p6" onclick="showMessage(5)"></div>
+        <div class="petal p7" onclick="showMessage(6)"></div>
+        <div class="petal p8" onclick="showMessage(7)"></div>
+        <div class="center-circle" onclick="showMessage('center')">💛</div>
+      </div>
+    </div>
 
     <div class="title">para isa :b</div>
     <div class="subtitle">de joandeku7>•<</div>
@@ -157,7 +219,6 @@
       Toca cualquier pétalo de la flor... 💛
     </div>
 
-    <!-- BOTÓN QUE DIRIGE A YOUTUBE -->
     <a class="youtube-link" href="https://www.youtube.com/watch?v=FR31HVr2_LU" target="_blank" rel="noopener noreferrer">
       ▶ Ver canción: Alex G - Mary
     </a>
@@ -166,7 +227,7 @@
 
   <script>
     const messages = [
-      "me haces muy feliz :3",
+            "me haces muy feliz :3",
       "eres la mejor la mejor y lo mejor que puede existir",
       "bleh",
       "siempre estaré junto a ti >,<",
