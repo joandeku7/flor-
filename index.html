@@ -20,8 +20,8 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: flex-start;
-      padding: 15px;
+      justify-content: center;
+      padding: 20px;
       overflow-x: hidden;
       position: relative;
     }
@@ -30,23 +30,29 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      justify-content: center;
       width: 100%;
-      max-width: 400px;
+      max-width: 380px;
       z-index: 10;
     }
 
-    /* FLOR EN SVG GRANDE Y BONITA */
+    /* CONTENEDOR Y FLOR EN SVG GRANDE Y BONITA */
     .flower-box {
       width: 100%;
-      max-width: 280px;
-      height: 280px;
+      max-width: 320px;
+      height: 320px;
       margin-bottom: 5px;
-      animation: floatSway 4s ease-in-out infinite alternate;
+      filter: drop-shadow(0px 8px 15px rgba(0,0,0,0.08));
+    }
+
+    .flower-animated {
+      animation: floatSway 3.5s ease-in-out infinite alternate;
+      transform-origin: bottom center;
     }
 
     @keyframes floatSway {
-      0% { transform: translateY(0) rotate(-1.5deg); }
-      100% { transform: translateY(-6px) rotate(1.5deg); }
+      0% { transform: rotate(-2.5deg); }
+      100% { transform: rotate(2.5deg); }
     }
 
     .petal-svg {
@@ -54,7 +60,7 @@
       stroke: #f57f17;
       stroke-width: 1.5;
       cursor: pointer;
-      transition: fill 0.15s, transform 0.15s;
+      transition: fill 0.2s, transform 0.2s;
     }
 
     .petal-svg:active {
@@ -64,7 +70,7 @@
     .center-svg {
       fill: #5d4037;
       stroke: #3e2723;
-      stroke-width: 2;
+      stroke-width: 2.5;
       cursor: pointer;
     }
 
@@ -75,18 +81,18 @@
 
     /* TEXTOS */
     .title {
-      font-size: 22px;
+      font-size: 24px;
       color: #4e342e;
       font-weight: 800;
       text-align: center;
-      margin-top: 2px;
+      margin-top: 5px;
     }
 
     .subtitle {
       font-size: 14px;
       color: #8d6e63;
       text-align: center;
-      margin-bottom: 12px;
+      margin-bottom: 15px;
     }
 
     /* CAJA DE MENSAJE */
@@ -94,16 +100,16 @@
       background-color: #ffffff;
       border: 2px solid #ffe082;
       border-radius: 16px;
-      padding: 14px;
+      padding: 16px;
       width: 100%;
       text-align: center;
-      min-height: 70px;
+      min-height: 80px;
       display: flex;
       align-items: center;
       justify-content: center;
       box-shadow: 0 4px 12px rgba(0,0,0,0.06);
       color: #3e2723;
-      font-size: 15px;
+      font-size: 16px;
       font-weight: 700;
       margin-bottom: 15px;
     }
@@ -113,68 +119,57 @@
       background: linear-gradient(135deg, #f57c00 0%, #e65100 100%);
       color: #ffffff;
       text-decoration: none;
-      padding: 12px 24px;
+      padding: 14px 24px;
       border-radius: 30px;
-      font-size: 14px;
-      font-weight: bold;
-      box-shadow: 0 4px 10px rgba(230, 81, 0, 0.3);
-      display: inline-block;
-      text-align: center;
-      margin-bottom: 18px;
-      width: 100%;
-    }
-
-    /* SECCIÓN DEL JUEGO */
-    .game-section {
-      background: #ffffff;
-      border: 2px dashed #fbc02d;
-      border-radius: 16px;
-      padding: 15px;
-      width: 100%;
-      text-align: center;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-    }
-
-    .game-title {
       font-size: 15px;
       font-weight: bold;
-      color: #4e342e;
-      margin-bottom: 10px;
+      box-shadow: 0 4px 12px rgba(230, 81, 0, 0.3);
+      display: inline-block;
+      text-align: center;
+      margin-bottom: 15px;
+      width: 100%;
     }
 
-    .game-btn {
+    .youtube-link:active {
+      transform: scale(0.97);
+    }
+
+    /* BOTÓN DE ANIMACIÓN ON / OFF */
+    .anim-btn {
+      background-color: #ffffff;
+      border: 2px solid #fbc02d;
+      color: #5d4037;
+      padding: 12px 20px;
+      border-radius: 25px;
+      font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.06);
+      transition: background-color 0.2s, color 0.2s;
+      width: 100%;
+      text-align: center;
+    }
+
+    .anim-btn.active {
       background-color: #ffb300;
       color: #3e2723;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 20px;
-      font-weight: bold;
-      font-size: 14px;
-      cursor: pointer;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-      margin-bottom: 8px;
+      border-color: #f57f17;
     }
 
-    .score-board {
-      font-size: 14px;
-      color: #6d4c41;
-      font-weight: bold;
-    }
-
-    /* CORAZONES QUE CAEN EN EL MINIJUEGO */
-    .falling-heart {
+    /* ELEMENTOS FLOTANTES DE LA ANIMACIÓN */
+    .floating-item {
       position: fixed;
-      top: -50px;
-      font-size: 36px;
-      cursor: pointer;
-      z-index: 9999;
-      animation: fall 3s linear forwards;
-      touch-action: manipulation;
+      top: -40px;
+      font-size: 26px;
+      z-index: 999;
+      pointer-events: none;
+      animation: fallDown 3.5s linear forwards;
     }
 
-    @keyframes fall {
+    @keyframes fallDown {
       to {
         transform: translateY(110vh) rotate(360deg);
+        opacity: 0.2;
       }
     }
   </style>
@@ -183,20 +178,18 @@
 
   <div class="container">
     
-    <!-- FLOR EN SVG SIMÉTRICA -->
-    <div class="flower-box">
+    <!-- FLOR GRANDE Y MEJORADA -->
+    <div class="flower-box flower-animated" id="flower-box">
       <svg viewBox="0 0 200 220" width="100%" height="100%">
         <!-- Tallo y Hojas -->
         <path d="M100 100 Q102 160 100 210" stroke="#2e7d32" stroke-width="8" fill="none" stroke-linecap="round"/>
         <path d="M100 170 Q70 160 55 180 Q80 190 100 170" fill="#2e7d32"/>
         <path d="M100 150 Q130 140 145 160 Q120 170 100 150" fill="#2e7d32"/>
 
-        <!-- 12 Pétalos colocados ordenadamente en círculo -->
-        <g id="petals-group">
-          <!-- Se generan dinámicamente con JS -->
-        </g>
+        <!-- Pétalos en círculo -->
+        <g id="petals-group"></g>
 
-        <!-- Centro de la flor con Corazón -->
+        <!-- Centro de la flor -->
         <circle class="center-svg" cx="100" cy="100" r="32" onclick="showMessage('center')" />
         <path class="heart-svg" d="M100 106 L92 98 A6 6 0 0 1 100 89 A6 6 0 0 1 108 98 Z" onclick="showMessage('center')" />
       </svg>
@@ -213,12 +206,10 @@
       ▶ Ver canción: Alex G - Mary
     </a>
 
-    <!-- SECCIÓN MINIJUEGO -->
-    <div class="game-section">
-      <div class="game-title">🎮 Minijuego: Atrapa los corazones para Isa</div>
-      <button class="game-btn" onclick="toggleGame()" id="game-btn">▶ Iniciar minijuego</button>
-      <div class="score-board" id="score-board">Corazones atrapados: 0 ❤️</div>
-    </div>
+    <!-- BOTÓN ACTIVAR ANIMACIÓN -->
+    <button class="anim-btn" id="anim-btn" onclick="toggleAnimation()">
+      ✨ Activar animación: OFF
+    </button>
 
   </div>
 
@@ -234,7 +225,7 @@
       "gracias por existir y estar junto a mi >•<"
     ];
 
-    /* GENERACIÓN DE PÉTALOS PERFECTOS */
+    /* GENERACIÓN DE PÉTALOS UNIFORMES */
     const petalsGroup = document.getElementById('petals-group');
     const totalPetals = 12;
 
@@ -242,7 +233,7 @@
       const angle = (360 / totalPetals) * i;
       const petal = document.createElementNS("http://www.w3.org/2000/svg", "path");
       petal.setAttribute("class", "petal-svg");
-      petal.setAttribute("d", "M100 100 C88 50 88 20 100 20 C112 20 112 50 100 100");
+      petal.setAttribute("d", "M100 100 C88 48 88 18 100 18 C112 18 112 48 100 100");
       petal.setAttribute("transform", `rotate(${angle}, 100, 100)`);
       petal.onclick = () => showMessage(i % messages.length);
       petalsGroup.appendChild(petal);
@@ -257,66 +248,40 @@
       }
     }
 
-    /* MINIJUEGO OPTIMIZADO PARA PANTALLAS TÁCTILES */
-    let gameInterval = null;
-    let score = 0;
-    let isPlaying = false;
+    /* CONTROL DE ANIMACIÓN ON / OFF */
+    let animInterval = null;
+    let isAnimOn = false;
 
-    function toggleGame() {
-      const btn = document.getElementById('game-btn');
-      if (!isPlaying) {
-        isPlaying = true;
-        btn.textContent = "⏸ Pausar juego";
-        gameInterval = setInterval(spawnHeart, 600);
+    function toggleAnimation() {
+      const btn = document.getElementById('anim-btn');
+      
+      if (!isAnimOn) {
+        isAnimOn = true;
+        btn.textContent = "✨ Activar animación: ON";
+        btn.classList.add('active');
+        animInterval = setInterval(spawnFloatingItem, 500);
       } else {
-        isPlaying = false;
-        btn.textContent = "▶ Reanudar juego";
-        clearInterval(gameInterval);
+        isAnimOn = false;
+        btn.textContent = "✨ Activar animación: OFF";
+        btn.classList.remove('active');
+        clearInterval(animInterval);
       }
     }
 
-    function spawnHeart() {
-      const heart = document.createElement('div');
-      heart.classList.add('falling-heart');
+    function spawnFloatingItem() {
+      const item = document.createElement('div');
+      item.classList.add('floating-item');
       
-      const emojis = ['💖', '💛', '✨', '💕', '🌸'];
-      heart.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+      const items = ['💛', '💖', '✨', '🌸', '💕'];
+      item.textContent = items[Math.floor(Math.random() * items.length)];
       
-      heart.style.left = Math.random() * (window.innerWidth - 60) + 10 + 'px';
+      item.style.left = Math.random() * (window.innerWidth - 40) + 'px';
       
-      const catchHeart = (e) => {
-        e.preventDefault();
-        score++;
-        document.getElementById('score-board').textContent = `Corazones atrapados: ${score} ❤️`;
-        heart.remove();
-      };
-
-      heart.addEventListener('touchstart', catchHeart, { passive: false });
-      heart.addEventListener('click', catchHeart);
-
-      document.body.appendChild(heart);
+      document.body.appendChild(item);
 
       setTimeout(() => {
-        if (heart.parentNode) {
-          heart.remove();
-        }
-      }, 3000);
-    }
-  </script>
-
-</body>
-</html>
-
-        score++;
-        document.getElementById('score-board').textContent = `Corazones atrapados: ${score} ❤️`;
-        heart.remove();
-      };
-
-      document.body.appendChild(heart);
-
-      setTimeout(() => {
-        if (heart.parentNode) {
-          heart.remove();
+        if (item.parentNode) {
+          item.remove();
         }
       }, 3500);
     }
