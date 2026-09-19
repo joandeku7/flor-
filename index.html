@@ -31,11 +31,11 @@
       max-width: 380px;
     }
 
-    /* CONTENEDOR DE LA FLOR */
-    .flower-container {
+    /* ÁREA DE LA FLOR */
+    .flower-wrapper {
       position: relative;
-      width: 220px;
-      height: 270px;
+      width: 250px;
+      height: 300px;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -46,78 +46,76 @@
     .stem {
       position: absolute;
       bottom: 0;
-      width: 8px;
-      height: 140px;
+      width: 10px;
+      height: 160px;
       background-color: #2e7d32;
-      border-radius: 4px;
+      border-radius: 5px;
       z-index: 1;
     }
 
     .leaf-left {
       position: absolute;
-      bottom: 45px;
-      left: 60px;
+      bottom: 50px;
+      left: 70px;
       width: 45px;
-      height: 22px;
+      height: 24px;
       background-color: #2e7d32;
       border-radius: 20px 0px 20px 0px;
-      transform: rotate(-20deg);
+      transform: rotate(-25deg);
       z-index: 1;
     }
 
     .leaf-right {
       position: absolute;
-      bottom: 35px;
-      right: 60px;
+      bottom: 40px;
+      right: 70px;
       width: 45px;
-      height: 22px;
+      height: 24px;
       background-color: #2e7d32;
       border-radius: 0px 20px 0px 20px;
-      transform: rotate(20deg);
+      transform: rotate(25deg);
       z-index: 1;
     }
 
-    /* CABEZA DE LA FLOR (PÉTALOS Y CENTRO) */
+    /* CENTRO Y PÉTALOS DE LA FLOR */
     .flower-head {
       position: absolute;
-      top: 10px;
-      width: 180px;
-      height: 180px;
+      top: 15px;
+      width: 200px;
+      height: 200px;
       display: flex;
       justify-content: center;
       align-items: center;
       z-index: 2;
     }
 
-    /* CENTRO REDONDO */
     .center-circle {
       position: absolute;
-      width: 75px;
-      height: 75px;
-      background: radial-gradient(circle, #6d4c41 0%, #4e342e 100%);
+      width: 70px;
+      height: 70px;
+      background: radial-gradient(circle, #5d4037 0%, #3e2723 100%);
       border-radius: 50%;
       z-index: 10;
       display: flex;
       justify-content: center;
       align-items: center;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
       cursor: pointer;
       color: #ffb300;
-      font-size: 24px;
+      font-size: 26px;
+      user-select: none;
     }
 
-    /* PÉTALOS SIMÉTRICOS Y ORDENADOS */
     .petal {
       position: absolute;
-      width: 38px;
-      height: 80px;
+      width: 42px;
+      height: 90px;
       background: linear-gradient(to top, #fbc02d, #ffeb3b);
       border: 1.5px solid #f57f17;
-      border-radius: 50% 50% 50% 50% / 70% 70% 30% 30%;
+      border-radius: 50% 50% 50% 50% / 80% 80% 20% 20%;
       cursor: pointer;
       transition: filter 0.2s, transform 0.2s;
-      /* Rotación exacta desde el centro */
-      transform-origin: center 80px;
+      transform-origin: center bottom;
       top: 10px;
       z-index: 5;
     }
@@ -126,17 +124,17 @@
       filter: brightness(1.1);
     }
 
-    /* Ángulos idénticos alrededor del centro */
-    .p1 { transform: rotate(0deg); }
-    .p2 { transform: rotate(45deg); }
-    .p3 { transform: rotate(90deg); }
-    .p4 { transform: rotate(135deg); }
-    .p5 { transform: rotate(180deg); }
-    .p6 { transform: rotate(225deg); }
-    .p7 { transform: rotate(270deg); }
-    .p8 { transform: rotate(315deg); }
+    /* DISTRIBUCIÓN MATEMÁTICA PERFECTA (8 PÉTALOS) */
+    .p1 { transform: rotate(0deg) translateY(-45px); }
+    .p2 { transform: rotate(45deg) translateY(-45px); }
+    .p3 { transform: rotate(90deg) translateY(-45px); }
+    .p4 { transform: rotate(135deg) translateY(-45px); }
+    .p5 { transform: rotate(180deg) translateY(-45px); }
+    .p6 { transform: rotate(225deg) translateY(-45px); }
+    .p7 { transform: rotate(270deg) translateY(-45px); }
+    .p8 { transform: rotate(315deg) translateY(-45px); }
 
-    /* TEXTOS Y MENSAJES */
+    /* TEXTOS */
     .title {
       font-size: 18px;
       color: #5d4037;
@@ -159,7 +157,7 @@
       padding: 15px;
       width: 100%;
       text-align: center;
-      min-height: 70px;
+      min-height: 75px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -194,7 +192,7 @@
 
   <div class="container">
     
-    <div class="flower-container">
+    <div class="flower-wrapper">
       <div class="stem"></div>
       <div class="leaf-left"></div>
       <div class="leaf-right"></div>
@@ -227,7 +225,7 @@
 
   <script>
     const messages = [
-            "me haces muy feliz :3",
+      "me haces muy feliz :3",
       "eres la mejor la mejor y lo mejor que puede existir",
       "bleh",
       "siempre estaré junto a ti >,<",
