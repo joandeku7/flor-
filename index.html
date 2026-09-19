@@ -3,292 +3,267 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Flor Amarilla para Isa</title>
+  <title>Para Isa ❤️</title>
   <style>
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
 
     body {
-      background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+      background-color: #fff9db;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: space-between;
-      padding: 20px 10px;
+      justify-content: center;
+      padding: 20px;
       overflow-x: hidden;
-      position: relative;
     }
 
-    h1 {
-      color: #78350f;
-      font-size: 1.5rem;
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      max-width: 400px;
+    }
+
+    /* ÁREA DE LA FLOR */
+    .flower-wrapper {
+      position: relative;
+      width: 220px;
+      height: 280px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .stem {
+      position: absolute;
+      bottom: 10px;
+      width: 10px;
+      height: 150px;
+      background-color: #2e7d32;
+      border-radius: 5px;
+      z-index: 1;
+    }
+
+    .leaf-left {
+      position: absolute;
+      bottom: 50px;
+      left: 65px;
+      width: 40px;
+      height: 20px;
+      background-color: #2e7d32;
+      border-radius: 20px 0px 20px 0px;
+      transform: rotate(-25deg);
+      z-index: 1;
+    }
+
+    .leaf-right {
+      position: absolute;
+      bottom: 40px;
+      right: 65px;
+      width: 40px;
+      height: 20px;
+      background-color: #2e7d32;
+      border-radius: 0px 20px 0px 20px;
+      transform: rotate(25deg);
+      z-index: 1;
+    }
+
+    .flower-head {
+      position: absolute;
+      top: 10px;
+      width: 180px;
+      height: 180px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 2;
+    }
+
+    .center-circle {
+      position: absolute;
+      width: 65px;
+      height: 65px;
+      background: radial-gradient(circle, #e65100 0%, #8d6e63 100%);
+      border-radius: 50%;
+      z-index: 10;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+      cursor: pointer;
+    }
+
+    .center-circle::after {
+      content: '💛';
+      font-size: 24px;
+    }
+
+    /* PÉTALOS ORGANIZADOS */
+    .petal {
+      position: absolute;
+      width: 42px;
+      height: 80px;
+      background: linear-gradient(to top, #fbc02d, #ffeb3b);
+      border-radius: 50% 50% 50% 50% / 80% 80% 20% 20%;
+      border: 1px solid #f57f17;
+      cursor: pointer;
+      transition: transform 0.2s, filter 0.2s;
+      transform-origin: center bottom;
+      z-index: 5;
+    }
+
+    .petal:hover, .petal:active {
+      filter: brightness(1.1);
+    }
+
+    .p1 { transform: translateY(-40px) rotate(0deg); }
+    .p2 { transform: translateY(-40px) rotate(45deg); }
+    .p3 { transform: translateY(-40px) rotate(90deg); }
+    .p4 { transform: translateY(-40px) rotate(135deg); }
+    .p5 { transform: translateY(-40px) rotate(180deg); }
+    .p6 { transform: translateY(-40px) rotate(225deg); }
+    .p7 { transform: translateY(-40px) rotate(270deg); }
+    .p8 { transform: translateY(-40px) rotate(315deg); }
+
+    /* TEXTOS Y MENSAJES */
+    .title {
+      font-size: 16px;
+      color: #5d4037;
+      font-weight: bold;
       text-align: center;
-      margin-top: 15px;
-      text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
+      margin-bottom: 4px;
     }
 
     .subtitle {
-      color: #92400e;
-      font-size: 0.9rem;
+      font-size: 12px;
+      color: #8d6e63;
       text-align: center;
-      margin-top: 5px;
+      margin-bottom: 20px;
     }
 
-    /* Contenedor principal de la flor */
-    .flower-container {
-      position: relative;
-      width: 280px;
-      height: 280px;
-      margin: 30px auto 10px auto;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    /* Tallo */
-    .stem {
-      position: absolute;
-      width: 12px;
-      height: 160px;
-      background: linear-gradient(to right, #15803d, #22c55e);
-      bottom: -130px;
-      border-radius: 6px;
-      z-index: 1;
-    }
-
-    /* Hojas */
-    .leaf {
-      position: absolute;
-      width: 50px;
-      height: 25px;
-      background-color: #15803d;
-      border-radius: 0px 50px 0px 50px;
-      z-index: 1;
-    }
-    .leaf.left {
-      bottom: -70px;
-      left: -40px;
-      transform: rotate(-20deg);
-    }
-    .leaf.right {
-      bottom: -90px;
-      right: -40px;
-      transform: scaleX(-1) rotate(-20deg);
-    }
-
-    /* Centro */
-    .center-circle {
-      position: absolute;
-      width: 85px;
-      height: 85px;
-      background: radial-gradient(circle, #b45309 0%, #78350f 100%);
-      border: 4px solid #f59e0b;
-      border-radius: 50%;
-      z-index: 10;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: #fef3c7;
-      font-size: 1.8rem;
-      user-select: none;
-    }
-
-    /* Pétalos */
-    .petal {
-      position: absolute;
-      width: 65px;
-      height: 125px;
-      background: linear-gradient(to top, #facc15 0%, #fef08a 100%);
-      border: 2px solid #eab308;
-      border-radius: 50% 50% 50% 50% / 80% 80% 20% 20%;
-      transform-origin: bottom center;
-      bottom: 50%;
-      cursor: pointer;
-      transition: transform 0.2s ease, filter 0.3s ease, background 0.3s ease;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      z-index: 5;
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    .petal:active { transform: scale(1.08); }
-
-    .petal:nth-child(1) { transform: rotate(0deg); }
-    .petal:nth-child(2) { transform: rotate(45deg); }
-    .petal:nth-child(3) { transform: rotate(90deg); }
-    .petal:nth-child(4) { transform: rotate(135deg); }
-    .petal:nth-child(5) { transform: rotate(180deg); }
-    .petal:nth-child(6) { transform: rotate(225deg); }
-    .petal:nth-child(7) { transform: rotate(270deg); }
-    .petal:nth-child(8) { transform: rotate(315deg); }
-
-    .petal.clicked {
-      background: linear-gradient(to top, #fbbf24 0%, #fde68a 100%);
-      border-color: #d97706;
-      filter: brightness(0.95);
-    }
-
-    /* Dedicatoria */
-    .dedication {
-      margin-top: 130px;
-      text-align: center;
-      color: #78350f;
-      font-weight: bold;
-      font-size: 1.1rem;
-      line-height: 1.4;
-    }
-
-    .dedication span {
-      font-size: 0.95rem;
-      color: #b45309;
-    }
-
-    /* Tarjeta de mensaje */
-    .message-card {
+    .message-box {
       background-color: #ffffff;
-      border: 2px solid #f59e0b;
-      border-radius: 16px;
-      padding: 18px;
-      width: 90%;
-      max-width: 380px;
+      border: 1px solid #ffe082;
+      border-radius: 12px;
+      padding: 15px;
+      width: 100%;
       text-align: center;
-      box-shadow: 0 10px 20px rgba(120, 53, 15, 0.15);
-      margin-top: 15px;
-      min-height: 85px;
+      min-height: 70px;
       display: flex;
       align-items: center;
       justify-content: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      color: #4e342e;
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 20px;
     }
 
-    .message-text {
-      color: #78350f;
-      font-size: 1.05rem;
-      font-weight: 600;
-      line-height: 1.4;
-    }
-
-    /* Botón flotante para reproducir música */
-    .play-bar {
-      margin-top: 15px;
-      margin-bottom: 10px;
-      background-color: #b45309;
-      color: #ffffff;
+    /* BOTÓN DE MÚSICA */
+    .music-btn {
+      background-color: #d84315;
+      color: white;
       border: none;
-      padding: 10px 20px;
-      border-radius: 20px;
+      padding: 12px 20px;
+      border-radius: 25px;
+      font-size: 13px;
       font-weight: bold;
-      font-size: 0.95rem;
       cursor: pointer;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      transition: background-color 0.2s;
       display: flex;
       align-items: center;
       gap: 8px;
     }
 
-    .pop { animation: popAnim 0.3s ease-out; }
-    @keyframes popAnim {
-      0% { transform: scale(0.9); opacity: 0.5; }
-      100% { transform: scale(1); opacity: 1; }
+    .music-btn:active {
+      transform: scale(0.98);
     }
   </style>
 </head>
 <body>
 
-  <!-- Archivo de Audio MP3 -->
-  <audio id="audioMary" loop src="https://ia801503.us.archive.org/15/items/alex-g-trick/03.%20Mary.mp3"></audio>
-
-  <div>
-    <h1>🌻 Para Isa 🌻</h1>
-    <p class="subtitle">Toca cada pétalo para descubrir un mensaje</p>
-  </div>
-
-  <div class="flower-container">
-    <div class="stem">
-      <div class="leaf left"></div>
-      <div class="leaf right"></div>
+  <div class="container">
+    
+    <div class="flower-wrapper">
+      <div class="stem"></div>
+      <div class="leaf-left"></div>
+      <div class="leaf-right"></div>
+      
+      <div class="flower-head">
+        <div class="petal p1" onclick="showMessage(0)"></div>
+        <div class="petal p2" onclick="showMessage(1)"></div>
+        <div class="petal p3" onclick="showMessage(2)"></div>
+        <div class="petal p4" onclick="showMessage(3)"></div>
+        <div class="petal p5" onclick="showMessage(4)"></div>
+        <div class="petal p6" onclick="showMessage(5)"></div>
+        <div class="petal p7" onclick="showMessage(6)"></div>
+        <div class="petal p8" onclick="showMessage(7)"></div>
+        <div class="center-circle" onclick="showMessage('center')"></div>
+      </div>
     </div>
 
-    <!-- Pétalos -->
-    <div class="petal" onclick="mostrarFrase(0, this)"></div>
-    <div class="petal" onclick="mostrarFrase(1, this)"></div>
-    <div class="petal" onclick="mostrarFrase(2, this)"></div>
-    <div class="petal" onclick="mostrarFrase(3, this)"></div>
-    <div class="petal" onclick="mostrarFrase(4, this)"></div>
-    <div class="petal" onclick="mostrarFrase(5, this)"></div>
-    <div class="petal" onclick="mostrarFrase(6, this)"></div>
-    <div class="petal" onclick="mostrarFrase(7, this)"></div>
+    <div class="title">para isa :b</div>
+    <div class="subtitle">de joandeku7>•<</div>
 
-    <div class="center-circle">💛</div>
+    <div class="message-box" id="msg-box">
+      Toca cualquier pétalo de la flor... 💛
+    </div>
+
+    <button class="music-btn" onclick="toggleMusic()" id="music-btn">
+      ▶ Reproducir: Alex G - Mary
+    </button>
+
+    <audio id="bg-music" loop preload="auto">
+      <source src="https://files.catbox.moe/k6w7e2.mp3" type="audio/mpeg">
+    </audio>
+
   </div>
-
-  <!-- Dedicatoria -->
-  <div class="dedication">
-    para isa :b<br>
-    <span>de joandeku7&gt;,&lt;</span>
-  </div>
-
-  <!-- Tarjeta de Mensajes -->
-  <div class="message-card" id="card">
-    <p class="message-text" id="phraseText">Toca cualquier pétalo de la flor...</p>
-  </div>
-
-  <!-- Botón manual para asegurarnos de que la música suene -->
-  <button class="play-bar" id="playBtn" onclick="toggleAudio()">
-    🎵 Reproducir: Alex G - Mary
-  </button>
 
   <script>
-    const audio = document.getElementById('audioMary');
-    const playBtn = document.getElementById('playBtn');
-    let isPlaying = false;
+    const messages = [
+      "Eres una persona super especial e increíble ✨",
+      "Espero que esta flor amarilla te saque una sonrisa hoy 🌼",
+      "Gracias por cada momento bonito 💛",
+      "Tu presencia siempre alegra todo alrededor 🌻",
+      "Te mereces las mejores cosas del mundo siempre ✨",
+      "Nunca olvides lo mucho que vales 💛",
+      "Espero que te guste mucho esta sorpresa :b",
+      "Un detalle amarillo hecho solo para ti 🌼"
+    ];
 
-    function toggleAudio() {
-      if (!isPlaying) {
-        audio.play().then(() => {
-          isPlaying = true;
-          playBtn.innerHTML = "⏸️ Pausar música";
-        }).catch(err => {
-          console.log("Error de reproducción:", err);
-        });
+    function showMessage(index) {
+      const box = document.getElementById('msg-box');
+      if (index === 'center') {
+        box.textContent = "¡Te quiero mucho, Isa! 💛✨";
       } else {
-        audio.pause();
-        isPlaying = false;
-        playBtn.innerHTML = "🎵 Reproducir: Alex G - Mary";
+        box.textContent = messages[index];
       }
     }
 
-    const frases = [
-      "✨ Eres el brillo que ilumina mis días más oscuros.",
-      "💛 Cada momento a tu lado es mi lugar favorito en el mundo.",
-      "🌸 Sonreír contigo es la razón más bonita de mi día.",
-      "💖 Me haces feliz de una forma que nadie más puede lograr.",
-      "🌟 Si volviera a nacer, te elegiría una y mil veces más.",
-      "☀️ Tu amor le da color y calidez a toda mi vida.",
-      "🎶 Tu voz y tu risa son mi melodía preferida.",
-      "🌻 Como esta flor amarilla, traes luz y felicidad a mi corazón."
-    ];
+    const audio = document.getElementById('bg-music');
+    const btn = document.getElementById('music-btn');
 
-    function mostrarFrase(index, petaloEl) {
-      // Activar música al tocar el primer pétalo si no ha sonado
-      if (!isPlaying) {
-        toggleAudio();
+    function toggleMusic() {
+      if (audio.paused) {
+        audio.play().then(() => {
+          btn.textContent = "⏸ Pausar: Alex G - Mary";
+        }).catch(err => {
+          alert("Toca la pantalla e intenta presionar de nuevo.");
+        });
+      } else {
+        audio.pause();
+        btn.textContent = "▶ Reproducir: Alex G - Mary";
       }
-
-      const card = document.getElementById('card');
-      const phraseText = document.getElementById('phraseText');
-
-      petaloEl.classList.add('clicked');
-
-      card.classList.remove('pop');
-      void card.offsetWidth;
-      card.classList.add('pop');
-
-      phraseText.textContent = frases[index];
     }
   </script>
 
